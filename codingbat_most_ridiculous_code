@@ -1,0 +1,58 @@
+public int[] fix45(int[] nums) {
+  int idx = 0;
+  boolean found4;
+  boolean found5;
+  while(idx < nums.length){
+    if(nums[idx] == 5){
+      int innerIdx = idx + 1;
+      found4 = false;
+      while((!found4) && (innerIdx < nums.length)){
+        if(nums[innerIdx] == 4){
+          found4 = true;
+          boolean notFound45 = true;
+          int innerIdx2 = innerIdx + 1;
+          while((notFound45) && (innerIdx2 < nums.length)){
+            if((nums[innerIdx2] != 4) && (nums[innerIdx2] != 5)){
+              notFound45 = false;
+              int temp = nums[idx];
+              nums[idx] = nums[innerIdx2];
+              nums[innerIdx2] = temp;
+            }
+            else{
+              innerIdx2++;
+            }
+          }
+        }
+        else{
+          innerIdx++;
+        }
+      }
+      idx++;
+    }
+    else if(nums[idx] == 4){
+      int innerIdx = idx + 1;
+      found5 = false;
+      while((!found5) && (innerIdx < nums.length)){
+        if(nums[innerIdx] == 5){
+          found5 = true;
+          if(innerIdx != idx + 1){
+            int temp = nums[idx + 1];
+            nums[idx + 1] = nums[innerIdx];
+            nums[innerIdx] = temp;
+          }
+          else{
+            innerIdx = idx + 2;
+          }
+        }
+        else{
+          innerIdx++;
+        }
+      }
+      idx += 2;
+    }
+    else{
+      idx++;
+    }
+  }
+  return nums;
+}
